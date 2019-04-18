@@ -1,0 +1,95 @@
+/* STYLES DE NOTRE APPLICATION */
+.App {
+	max-width:800px;
+	margin:0 auto;
+}
+.App-nav {
+	margin: 20px;
+	padding: 10px;
+	border-bottom: 2px solid #508FCA;
+}
+.App-nav ul {
+	padding:0;
+	margin:0;
+}
+
+.App-nav-item {
+	list-style:none;
+	display:inline;
+	padding: 0 20px;
+	border-bottom:2px solid transparent;
+	
+}
+.App-content {
+	margin: 0 20px;
+}
+.App-nav-item a {
+	cursor:pointer;
+}
+.App-nav-item a:hover {
+	color:#999;
+}
+.App-nav-item.selected a {
+	color:#FFAA3F;
+	font-size:1.25em;
+	font-weight: bold;
+	text-decoration:underline;
+}
+
+/*********PRODUIT Item.js CSS **********/
+.ItemPage-items {
+	
+	margin:0;
+	padding:0;
+}
+.ItemPage-items li  {
+	
+	list-style:none;
+	margin-bottom:20px;
+}
+.Item {
+	display:flex;
+	padding:10px;
+	justify-content:space-between;
+	border-bottom:1px solid #ccc;
+}
+.Item-title{
+	font-weight:bold;
+}
+.Item-price{
+	text-align:right;
+	font-size:18px;
+	color:#555;
+
+}
+.Item-image{
+	height:64px;
+	width:64px;
+	border:1px solid #ccc;
+	margin-right:10px;
+	float:left;
+	
+}
+.Item-AddToCart{
+	margin-bottom:5px;
+	font-size:14px;
+	border:2px solid #FFAA3F;
+	background:#FFF;
+	border-radius:4px;
+	cursor:pointer;  
+}
+.Item-AddToCart:hover{
+	background-color:#FFDDB2;
+}
+.Item-AddToCart:focus{
+	outline:none;
+}
+
+.Item-left{flex:1;}
+
+.Item-right{
+	display:flex;
+	flex-direction:column;
+	justify-content:space-between;
+}
+
