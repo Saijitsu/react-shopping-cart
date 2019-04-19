@@ -21,6 +21,14 @@ class App extends Component {
     })
   }
 
+  handleRemoveToCart = (item) => {
+    let index = this.state.cart.indexOf(item.id);
+    this.setState({
+      cart: [...this.state.cart.splice(0, index),
+        ...this.state.cart.splice(index + 1)]
+    })
+  }
+
   tabChange = (index) => {
     this.setState({ activeTab: index });
   }
@@ -35,70 +43,82 @@ class App extends Component {
     }, {});
 
     // Create an items array
+    // Create an unique ID
+    let uniqueID = new Date();
 
     let cartItems = Object.keys(itemCounts).map(itemId => {
       // find by id
       let item = products.find(item =>
-        item.id === parseInt(itemId, 1)
+
+        item.id === parseInt(itemId, itemId.length + uniqueID)
       );
 
-    // Creat new item
-    return {
-      ...item,
-      count: itemCounts[itemId]
-    }
-  });
+      // Creat new item
+      return {
+        ...item,
+        count: itemCounts[itemId]
+      }
+    });
 
-  return( <CartPage items = { cartItems } />)
-}
-
-/* Rappel ES6 avec Reduce
-const a=[1,2,3,4]
-let total= a.reduce( (sum, value) => {
-  return sum + value;
-}, 0)
-
-// (0,1) => 1
-// (1,2) => 3
-// (3,3) => 6
-// (6,4) => 10  the function result = last element
-
-const a=[1,2,3,4]
-for (i=0; i <a[i].lengh; i++){
-  let total += a[i]
-}
-
-*/
-
-renderContent() {
-
-  switch (this.state.activeTab) {
-
-    default:
-    case 0: return <ItemPage items={products} onAddToCart={this.handleAddToCart} />;
-    case 1: return this.renderCart();
-
+    return (<CartPage items={cartItems} onAddOne={this.handleAddToCart} onRemoveOne={this.handleRemoveToCart}/>)
   }
-}
+
+  /* Rappel ES6 avec Reduce */
+  /*
+    let a =[1,2,3,4];
+    let total = a.reduce( (sum,value) =>{
+        
+        return sum + value;
+        
+    },0)
+  
+  
+   //      (0,1)  => 1
+           (1,2)  => 3
+           (3,3)  => 6
+           (6,4)  => 10
+      // la fonction reduce retourne le dernier element
+  
+  */
+  /*
+    const  a =[1,2,3,4];
+    let total =0;
+    
+    for( let i=0; i < a.length; i++){
+        total +=a[i]  // total = total + a[i]
+    }
+  
+  */
+
+  renderContent() {
+
+    switch (this.state.activeTab) {
+
+      default:
+      case 0: return <ItemPage items={products} onAddToCart={this.handleAddToCart} />;
+      case 1: return this.renderCart();
+
+    }
+  }
 
 
-render() {
+  render() {
 
-  let { activeTab } = this.state;
+    let { activeTab } = this.state;
 
-  return (
+    return (
 
-    <div className="App">
-      <h1>Shopping</h1>
-      <h3> You have {this.state.cart.length} item(s) in your Cart</h3>
-      <Nav activeTab={activeTab} onTabChange={this.tabChange} />
+      <div className="App">
+        <h1>Shopping</h1>
+        <h3> You have {this.state.cart.length} item(s) in your Cart</h3>
+        <Nav activeTab={activeTab} onTabChange={this.tabChange} />
 
-      {this.renderContent()}
+        {this.renderContent()}
 
-    </div>
+      </div>
 
-  );
-}
+    );
+  }
 }
 
 export default App;

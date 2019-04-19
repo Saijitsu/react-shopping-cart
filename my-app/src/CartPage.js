@@ -2,15 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Item from './Item';
 
-function CartPage ({items}){
-    return(
-<ul className="CartPage-items">
+function CartPage({ items, onAddOne, onRemoveOne }) {
+    return (
+        <ul className="CartPage-items">
             {
                 items.map(item =>
-                    <li key={item.id} className="CartPage-item">
+                    <li key={item.id} className="CartPage-items">
 
-                        <Item item={item} />
-
+                        <Item item={item}>
+                            <button onClick={() => onAddOne(item)}> + </button>
+                            <span> Quantity: {item.count} </span>
+                            <button onClick={() => onRemoveOne(item)}> - </button></Item>
                     </li>
                 )
             }
@@ -18,8 +20,10 @@ function CartPage ({items}){
     )
 }
 
-CartPage.popTypes = {
-    itemps:PropTypes.array.isRequired
+CartPage.propTypes = {
+    items: PropTypes.array.isRequired,
+    onAddOne: PropTypes.func.isRequired,
+    onRemoveOne: PropTypes.func.isRequired
 }
 
 export default CartPage

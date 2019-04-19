@@ -6,7 +6,7 @@ const Nav = ({ activeTab, onTabChange }) => (
             <NavLink index={0} onClick={onTabChange}> Products </NavLink>
         </li>
         <li className={`App-nav-item ${activeTab === 1 && 'selected'}`}>
-        <NavLink index={1} onClick={onTabChange}> Cart </NavLink>
+            <NavLink index={1} onClick={onTabChange}> Cart </NavLink>
         </li>
     </nav>
 );
@@ -20,8 +20,8 @@ class NavLink extends Component {
         return (
             <a onClick={this.handleClick}>
                 {this.props.children}</a>
-                )
-            }
-        }
-        
+        )
+    }
+}
+
 export default Nav;
